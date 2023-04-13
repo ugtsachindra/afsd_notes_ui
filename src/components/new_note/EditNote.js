@@ -1,46 +1,49 @@
 
+import React, { useState } from "react";
 import { Box, Button, Modal, TextField, Typography } from "@mui/material";
 
-import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
 
-export default function NewNote(props) {
-  const [description, setDescription] = useState();
-  const [title, setTitle] = useState();
-  const [image, setImage] = useState("");
-
+export default function EditNote(props) {
+    const [description, setDescription] = useState();
+    const [title, setTitle] = useState();
+    const [image, setImage] = useState("");
   
-
-  const saveNote = async () => {
-    const params = {
-      description: description,
-      title:title,
-      image:image,
+    
+  
+    const saveNote = async () => {
+      const params = {
+        description: description,
+        title:title,
+        image:image,
+      };
+      const options = {
+        method: "PUT",
+        body: JSON.stringify(params),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+  
+      fetch("http://localhost:8080/note/"+props.Note.id, options)
+        .then((response) => response.json())
+        .then((response) => {
+          if (response===true) {
+            setTitle('');
+            setDescription('');
+            setImage('');
+            props.modalClose();
+          } else {
+            console.log(response)
+          }
+        });
     };
-    const options = {
-      method: "POST",
-      body: JSON.stringify(params),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
-    fetch("http://localhost:8080/note/save", options)
-      .then((response) => response.json())
-      .then((response) => {
-        if (response===true) {
-          setTitle('');
-          setDescription('');
-          setImage('');
-          props.modalClose();
-        } else {
-          
-        }
-      });
-  };
-
-  return (
-    <Modal
+  
+  
+  
+    return (
+    
+        <Modal
       open={props.open}
       sx={{
         width: "75%",
@@ -76,7 +79,7 @@ export default function NewNote(props) {
               setTitle(event.target.value);
             }}
             // value={title}
-            defaultValue={title}
+            defaultValue={props.Note.title}
           />
 
           <TextField
@@ -93,7 +96,7 @@ export default function NewNote(props) {
               setDescription(event.target.value);
             }}
             // value={description}
-            defaultValue={description}
+            defaultValue={props.Note.description}
           />
 
           <TextField
@@ -108,7 +111,7 @@ export default function NewNote(props) {
               setImage(event.target.value);
             }}
             // value={image}
-            defaultValue={image}
+            defaultValue={props.Note.image}
           />
 
           <Box sx={{ mt: 2, pb: 3, margin: "auto", position: "relative" }}>
@@ -123,5 +126,6 @@ export default function NewNote(props) {
         </Box>
       </Box>
     </Modal>
-  );
+  
+  )
 }

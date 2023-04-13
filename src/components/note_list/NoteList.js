@@ -1,26 +1,19 @@
 import React from 'react'
 import NoteCard from '../single_note/NoteCard'
-import { Box, Grid } from '@mui/material'
+import {  Grid } from '@mui/material'
 
-export default function NoteList() {
+export default function NoteList(props) {
   return (
     <Grid container direction="row"
     justifyContent="center"
     alignItems="center" 
     >
 
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
-    <NoteCard/>
+      {props.notesList.map((note)=>(
+        <NoteCard  key={note.id} Note={note}/>
+      ))}
+
+   
     
 
     </Grid>
