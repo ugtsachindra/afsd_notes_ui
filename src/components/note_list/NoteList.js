@@ -7,10 +7,13 @@ export default function NoteList(props) {
     <Grid container direction="row"
     justifyContent="center"
     alignItems="center" 
+    spacing={5}
     >
 
       {props.notesList.map((note)=>(
-        <NoteCard  key={note.id} Note={note}/>
+        <Grid key={note.id} item>
+        <NoteCard   Note={note}/>
+        </Grid>
       ))}
 
    
