@@ -47,8 +47,9 @@ export default function NoteCard(props) {
           width: 250,
           height: 300,
           borderRadius: 10,
+          boxShadow:5,
           "&:hover": {
-            boxShadow:10
+            boxShadow:20
           },
           position: "relative",
           

@@ -1,0 +1,16 @@
+.navbar{
+    position: fixed;
+    width: '100%';
+    top: 0;
+    background-color: blue;
+    z-index: 2000 ;
+}
+
+.navtop{
+
+    height: 20;
+    width: '100%';
+    position: relative;
+    top: 100;
+    background-color: blue;
+}

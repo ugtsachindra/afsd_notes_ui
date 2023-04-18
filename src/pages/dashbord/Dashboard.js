@@ -1,10 +1,11 @@
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import React, { Fragment, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import "./Dashboard.css";
 import NewNote from "../../components/new_note/NewNote";
 import NoteList from "../../components/note_list/NoteList";
+import NavBar from "../../components/nav_bar/NavBar";
 
 export default function Dashboard(props) {
   const [authenticated, setauthenticated] = useState(null);
@@ -12,16 +13,19 @@ export default function Dashboard(props) {
   
   const [notes, setNotes] = useState([]);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const handleClose = () => {setOpen(false);};
+  const handleOpen = () => {setOpen(true);};
 
-
+  const handleLogout = () =>{setauthenticated(false);};
+  const navigate = useNavigate();
 
   useEffect(() => {
+
+    const loggedInUser = localStorage.getItem("authenticated");
+    if (loggedInUser) {
+      setauthenticated(loggedInUser);
+    }
+
     const options = {
       method: "GET",
       contentType: 'application/json',
@@ -32,7 +36,9 @@ export default function Dashboard(props) {
         "Access-Control-Allow-Headers": "application/json",
       },
     };
-    fetch("http://localhost:8080/note/",options)
+    
+    if (loggedInUser) {
+      fetch("http://localhost:8080/note/",options)
       .then((response) => response.json())
       .then((response) => {
         if (Object.keys(response).length === 0) {
@@ -40,21 +46,19 @@ export default function Dashboard(props) {
           setNotes(response);
         }
       });
-  }, []);
-
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem("authenticated");
-    if (loggedInUser) {
-      setauthenticated(loggedInUser);
+    } else {
+      navigate("/login");
     }
+    
   }, []);
 
   if (!authenticated) {
-    return <Navigate replace to="/" />;
+    
+    // return <Navigate replace to="/login" />;
   } else {
     return (
       <Fragment>
-                <p>Welcome to your Dashboard</p>
+        <NavBar logout={handleLogout}/>
         {/* <h5>{props.activeUser.name}</h5> */}
         <NoteList  notesList={notes} />
         <NewNote open={open} modalClose={handleClose} />

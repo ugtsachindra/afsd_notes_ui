@@ -1,20 +1,31 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Dashboard from './pages/dashbord/Dashboard';
+import React, { useEffect } from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import Dashboard from "./pages/dashbord/Dashboard";
+import Login from "./pages/login/Login";
+import Register from "./components/login/Register";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
+
+
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route index element={<App />} />
-        <Route path="dashboard" element={<Dashboard />} />
-      </Routes>
-    </BrowserRouter>
+            
+      <Routes>
+                
+        <Route index element={<App />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+             
+        <Route path="/login" element={<Login />} />
+        
+              
+      </Routes>
+          
+    </BrowserRouter>
   </React.StrictMode>
 );
 

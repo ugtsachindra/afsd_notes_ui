@@ -1,5 +1,5 @@
 
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, Slide, TextField, Typography } from "@mui/material";
 
 import React, { useState } from "react";
 import ImageUpload from "./ImageUpload";
@@ -42,15 +42,19 @@ export default function NewNote(props) {
   return (
     <Modal
       open={props.open}
+      
       sx={{
         width: "75%",
         minWidth: 300,
         maxWidth: 500,
         margin: "auto",
-        top: "30%",
+        top: "10%",
+        zIndex:2501,
       }}
     >
+      <Slide direction="up" in={props.open} mountOnEnter unmountOnExit>
       <Box
+      
         sx={{
           bgcolor: "white",
         }}
@@ -122,6 +126,7 @@ export default function NewNote(props) {
           </Box>
         </Box>
       </Box>
+      </Slide>
     </Modal>
   );
 }

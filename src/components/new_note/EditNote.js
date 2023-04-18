@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { Box, Button, Modal, TextField, Typography } from "@mui/material";
+import { Box, Button, Modal, Slide, TextField, Typography } from "@mui/material";
 
 import ImageUpload from "./ImageUpload";
 
@@ -50,9 +50,11 @@ export default function EditNote(props) {
         minWidth: 300,
         maxWidth: 500,
         margin: "auto",
-        top: "30%",
+        top: "10%",
+        zIndex:2501,
       }}
     >
+      <Slide direction="up" in={props.open} mountOnEnter unmountOnExit>
       <Box
         sx={{
           bgcolor: "white",
@@ -125,6 +127,7 @@ export default function EditNote(props) {
           </Box>
         </Box>
       </Box>
+      </Slide>
     </Modal>
   
   )
