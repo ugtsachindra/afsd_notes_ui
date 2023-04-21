@@ -33,6 +33,9 @@ export default function NoteCard(props) {
     then(response=>response.json()).
     then(response=>{ 
       console.log(response);
+      if(response){
+        props.refresh();
+      }
     });
   };
 
@@ -60,7 +63,7 @@ export default function NoteCard(props) {
         }}
       >
         <CardActionArea  onClick={handleOpenView}>
-        <CardMedia image={props.Note.image} height="140" component={"img"}/>
+        <CardMedia image={"http://localhost:8080"+props.Note.image} height="140" component={"img"}/>
         
        
 

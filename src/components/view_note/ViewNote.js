@@ -1,5 +1,5 @@
 import { Image } from "@mui/icons-material";
-import { Box, Button, Fade, Modal, Slide, Typography } from "@mui/material";
+import { Box, Button, CardMedia, Fade, Modal, Slide, Typography } from "@mui/material";
 import React, { useState } from "react";
 
 const style = {
@@ -40,14 +40,20 @@ export default function ViewNote(props) {
   >
     <Slide direction="up" in={props.open} mountOnEnter unmountOnExit>
     <Box sx={style} overflow={'auto'}>
-      <img width={'100%'}  src={props.Note.image} />
-      <Typography id="modal-modal-title" variant="h6" component="h2">
+    {props.Note.image && (
+              <CardMedia
+                image={"http://localhost:8080" + props.Note.image}
+                height="200"
+                component={"img"}
+              />
+            )}
+      <Typography id="modal-modal-title" variant="h6" component="h2" sx={{mt:2}}>
         {props.Note.title}
       </Typography>
       <Typography id="modal-modal-description" sx={{ mt: 2 }}>
         {props.Note.description}
       </Typography>
-      <Button onClick={props.modalClose}>Close</Button>
+      <Button onClick={props.modalClose} sx={{mt:3, ml:0}}>Close</Button>
     </Box>
     </Slide>
 

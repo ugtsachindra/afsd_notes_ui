@@ -5,3 +5,14 @@
     right: 0;
     padding: 50;
 }
+
+.bg{
+    background-image: url("../../asset/img/dashboard-bg.jpg");
+    /* opacity: 0.5; */
+    min-width: 100%;
+    min-height: 100%;
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    
+}

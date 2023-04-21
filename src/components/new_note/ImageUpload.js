@@ -13,9 +13,9 @@ export default function ImageUpload() {
             }}>
             <Button variant="contained" component="label" startIcon={<PhotoCamera />} 
             onChange={(e)=>{setImage(e);
-            console.log(e);}}>
+            console.log(e.target.files);}}>
               Upload
-              <input hidden accept="image/*" multiple type="file" />
+              <input hidden accept="image/*" type="file" />
             </Button>
             </Box>
             );

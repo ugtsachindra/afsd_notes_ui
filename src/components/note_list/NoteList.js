@@ -3,6 +3,11 @@ import NoteCard from '../single_note/NoteCard'
 import {  Box, Grid, Grow } from '@mui/material'
 
 export default function NoteList(props) {
+
+  const handleRefresh = () => {
+   props.refresh();
+   
+  };
   return (
     <Box sx={{margin:5, mt:10}} >
     <Grid
@@ -15,7 +20,7 @@ export default function NoteList(props) {
       {props.notesList.map((note)=>(
         <Grow  in={true} timeout={2000} key={note.id}>
         <Grid key={note.id} item >
-        <NoteCard   Note={note}/>
+        <NoteCard refresh={handleRefresh}  Note={note}/>
         </Grid>
         </Grow>
       ))}

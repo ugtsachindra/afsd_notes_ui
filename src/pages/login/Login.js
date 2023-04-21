@@ -19,7 +19,8 @@ import { Navigate, useNavigate } from "react-router-dom";
 import Dashboard from "../dashbord/Dashboard";
 import Register from "../../components/login/Register";
 import LoginForm from "../../components/login/LoginForm";
-
+import imageBG from '../../asset/img/pexels-lumn-399161.jpg'
+import { CenterFocusStrong } from "@mui/icons-material";
 
 export default function Login() {
   const resetForm = () => {
@@ -43,11 +44,13 @@ export default function Login() {
             marginTop: "5%",
             display: "flex",
             flexDirection: "column",
-            alignItems: "center",
+
           }}
         >
-          <Card variant="outlined" sx={{ maxWidth: "25%", minWidth: 300 }}>
-            <Typography variant="h5" sx={{ mb: 2, mt: 5, padding: 2 }}>
+          <Card variant="outlined" sx={{ maxWidth: "35%", minWidth: 400,
+        borderRadius:10,
+        ml:"10%" }}>
+            <Typography  variant="h5" sx={{ mb: 2, mt: 5, padding: 2 }}>
               Learning Meterial Notes Collector App
             </Typography>
             <CardMedia

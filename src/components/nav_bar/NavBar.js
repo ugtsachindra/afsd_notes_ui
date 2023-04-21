@@ -64,6 +64,7 @@ export default function NavBar(props) {
           placeholder="Search"
           size="normal"
           type="text"
+          onChange={(e)=>{props.search(e.target.value)}}
         />
           <Tooltip title="Account settings" >
 
